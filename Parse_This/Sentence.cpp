@@ -71,21 +71,16 @@ uint32_t Sentence::dataFieldHelper(nmeaID_t id[], uint8_t arraySize) {
 	return activeDataFields;
 }
 
-/**
- *
- * parameter passed in is enumerated nmea sentence ID. Based on sentence ID argument,
- * setDataFields sets the appropriate fieldType variables as "true"
- * This "True/False" list will be used to create container (vector?) for all valid/in-use data field variables
- * as well as the pointer functions to access the parsed values of those fields. (Jump table)
- */
+
+
 void Sentence::setDataFields(nmeaID_t& id) {
 
 	activeDataFields |= id;
 	activeStatusFields |= statusFields[id];
 
-	if (activeDataFields & 0x2)	// we're expecting GPGSA sentences
+	if (activeDataFields & 0x2)		// we're expecting GPGSA sentences
 			{
-		satID = true;			// flag to declare satellite channel/ID array
+		satID = true;				// flag to declare satellite channel/ID array
 	}
 
 }

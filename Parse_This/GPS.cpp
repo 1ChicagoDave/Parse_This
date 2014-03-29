@@ -12,8 +12,7 @@
 #include <cstring>
 using namespace std;
 
-GPS::GPS() {
-	typedef uint32_t nmeaID_t;
+GPS::GPS() : activeDataFields(0x0), activeStatusFields(0x0) {
 
 }
 
