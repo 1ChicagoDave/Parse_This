@@ -35,42 +35,73 @@
 //  RMC sentence variable/contatiner name scheme : 
 //  $--RMC,hhmmss.ss,status,latdm.latm,ns,longdm.longm,ew,groundSpeedWhole.groundSpeedFraction,headingWhole.
 //		headingFraction,ddmmyy,magVarWhole.magVarFraction,magVarCard,FAA,*checksum<CR><LF>
-///	ALL GPS sentence data field storage index - (type == enum)
+///	ALL GPS sentence data field storage index -
 /// if (sentenceTypes == ALL )
-typedef uint32_t dataFieldName;
-dataFieldName hrsWhole = 0x80000000, minsWhole = 0x40000000, secsWhole =
-		0x20000000,
-		secsFract = 0x10000000, 							///	time	// 4
-		///	time == 0xF0000000
-		day = 0x8000000, month = 0x4000000,
-		year = 0x2000000, 										///	date	// 3
-		/// date = 0xE000000
-		latDegMinWhole = 0x1000000, latMinFract = 0x800000,
-		cardNS = 0x400000, 							///	latitude and N/S	//3
-		/// lat == 0x1C00000
-		longDegMinWhole = 0x200000, longMinFract = 0x100000,
-		cardEW = 0x80000, 							///	longitude and E/W	//3
-		/// long == 0x380000
-		altitudeWhole = 0x40000, altitudeFract = 0x20000,
-		altitudeUnits = 0x10000,					///	altitude		//	3
-		///	altitude == 0x70000
-		knotSpeedWhole = 0x8000, knotSpeedFract = 0x4000, kiloSpeedWhole =
-				0x2000,
-		kiloSpeedFract = 0x1000,		///	speed and units	// 4
-		/// knotSpeed = 0xC000	kiloSpeed == 0x3000  BOTH == 0xF000
-		trueCourseWhole = 0x800, trueCourseFract = 0x400,
-		magCourceWhole = 0x200,
-		magCourceFract = 0x100,	///	course/headings in degrees	// 4
-		/// trueCourse == 0xC00	magCourse == 0x300		BOTH == 0xF00
-		magVar = 0x80,
-		geoidSep = 0x40, 					/// Earth/environmental info	// 2
 
-		PDOPwhole = 0x20, PDOPfract = 0x10, HDOPwhole = 0x8, HDOPfract = 0x4,
-		VDOPwhole = 0x2, VDOPfract = 0x1	///	dilution of precions	// 6
-		/// PDOP == 0x30	HDOP == 0xC		VDOP = 0x3	ALL = 0x3F
-		//	4+3+3+3+3+4+4+4+1+2+6 = 37 variables - 5 == 32
-		// 11111111 11111111 11111111 11111111
-		;
+/**
+ * \typedef typedef uint32_t dataFieldName
+ * 	\brief	unsigned integer 32-bit
+ * 		Type for complete listing of possible GPS NMEA sentence data fields
+ */
+typedef uint32_t dataFieldName;
+
+/**
+ *	Complete listing of possible GPS NMEA sentence data fields
+ *	...and their hex bit identifier value
+ *
+ *	TODO: <template>??
+ *
+ */
+dataFieldName 	hrsWhole = 0x80000000,
+				minsWhole = 0x40000000,
+				secsWhole = 0x20000000,
+				secsFract = 0x10000000, 		///	time	// 4
+				///	time == 0xF0000000
+				day = 0x8000000,
+				month = 0x4000000,
+				year = 0x2000000, 				///	date	// 3
+				/// date = 0xE000000
+				latDegMinWhole = 0x1000000,
+				latMinFract = 0x800000,
+				cardNS = 0x400000, 							///	latitude and N/S	//	3
+				/// lat == 0x1C00000
+				longDegMinWhole = 0x200000,
+				longMinFract = 0x100000,
+				cardEW = 0x80000, 							///	longitude and E/W	//	3
+				/// long == 0x380000
+				altitudeWhole = 0x40000,
+				altitudeFract = 0x20000,
+				altitudeUnits = 0x10000,					///	altitude			//	3
+				///	altitude == 0x70000
+				knotSpeedWhole = 0x8000,
+				knotSpeedFract = 0x4000,
+				kiloSpeedWhole = 0x2000,
+				kiloSpeedFract = 0x1000,		///	speed and units	// 4
+				/// knotSpeed = 0xC000	kiloSpeed == 0x3000  BOTH == 0xF000
+
+				///	course/headings in degrees	// 4
+				trueCourseWhole = 0x800,
+				trueCourseFract = 0x400,
+				magCourceWhole = 0x200,
+				magCourceFract = 0x100,
+				/// trueCourse == 0xC00	magCourse == 0x300		BOTH == 0xF00
+
+				/// Earth/environmental info	// 2
+				magVar = 0x80,
+				geoidSep = 0x40,
+
+				///	dilution of precions	// 6
+				PDOPwhole = 0x20,
+				PDOPfract = 0x10,
+				HDOPwhole = 0x8,
+				HDOPfract = 0x4,
+				VDOPwhole = 0x2,
+				VDOPfract = 0x1;
+				/// PDOP == 0x30	HDOP == 0xC		VDOP = 0x3	ALL = 0x3F
+
+				//	4+3+3+3+3+4+4+4+1+2+6 = 37 variables - 5 == 32
+				// 11111111 11111111 11111111 11111111
+
 
 typedef uint8_t statusFieldName;
 statusFieldName statusAV = 0x10, posFix0123 = 0x08, modeAM = 0x04, mode123 =
@@ -94,15 +125,9 @@ uint8_t satsInView[12][3] = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 },
 		{ 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0,
 				0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, };
 
-/** GPS sentence data field storage container
- *	type == uint8_t
- *	indexed by enum dataFieldName[]
- */
-uint8_t dataFieldValues[] = { 0, 0, 0
 
-};
 
-//	Jump table for RMC sentence
+//	Example Jump table for RMC sentence
 void (*pfRMC[])(
 		void) {hoursMin(), secondsFract(), statusInd(), latDegMin(), latMin(), northSouth(),
 			longDegMin(), longMin, eastWest(), groundSpeedWhole(), groundSpeedFract(),

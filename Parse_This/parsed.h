@@ -17,6 +17,10 @@ private:
 
 public:
 	parsed();						//	Constructor
+	/**
+	 *
+	 */
+
 	uint16_t timeUTC();			//	UTC Time (default)
 	char timeLoc(int8_t);		//	timezone offset	(calculated)
 	uint16_t date(char, int8_t);	//	(u or l), (timezone offset) ddmmyy

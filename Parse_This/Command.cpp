@@ -12,7 +12,12 @@ Command::Command() {
 
 }
 
+
 int Command::set(int pmtk, char &settings) {
+
+	bool ackResponse = GPS.ackListen();
+
+	return ackResponse;
 
 }
 
@@ -28,7 +33,7 @@ int Command::query(int pmtk) {
 }
 
 char Command::setting(int int1, char s) {
-	// Takes PMTK# and setting string, computes checksum, concatenates, passes as function pointer
+	// Takes PMTK# and setting string, computes checksum, concatenates, passes as function pointer?
 
 	char commandString;
 	return commandString;

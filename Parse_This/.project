@@ -24,6 +24,13 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>Example_Practice_Programs</name>
+			<type>2</type>
+			<locationURI>PROJECT_LOC/Example_Practice_Programs</locationURI>
+		</link>
+	</linkedResources>
 	<filteredResources>
 		<filter>
 			<id>1396116516269</id>

@@ -15,7 +15,7 @@ class Command: public GPS {
 public:
 	Command();
 	char setting(int, char*);// Takes PMTK# and setting string, computes checksum, concatenates, passes as function pointer
-	int set(int, char*);
+	int set(int, char&);
 	int query(int);
 	virtual ~Command();
 };
